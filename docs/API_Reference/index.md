@@ -6,5 +6,5 @@ sidebar_position: 2
 
 Choose the generated reference surface you want to browse.
 
-- [Browser API](./API_Reference/Generated/browser)
-- [Node API](./API_Reference/Generated/node)
+- [Browser API](/docs/API_Reference/Generated/browser)
+- [Node API](/docs/API_Reference/Generated/node)
