@@ -69,7 +69,7 @@ const config = {
             position: 'left',
           },
           {
-            to: '/docs/API_Reference/Generated',
+            to: '/docs/API_Reference',
             label: 'API',
             position: 'left',
           },

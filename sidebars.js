@@ -34,7 +34,11 @@ const sidebars = {
         id: 'API_Reference/index',
       },
       items: [
-        'API_Reference/Generated/index',
+        {
+          type: 'doc',
+          id: 'API_Reference/Generated/index',
+          className: 'sidebar-item-hidden',
+        },
         {
           type: 'category',
           label: 'Browser API',
@@ -57,6 +61,7 @@ const sidebars = {
           type: 'category',
           label: 'Legacy API Pages',
           collapsed: true,
+          className: 'sidebar-item-hidden',
           items: [
             'API_Reference/cdcamera',
             'API_Reference/cddecoder',
