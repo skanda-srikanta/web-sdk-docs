@@ -4,8 +4,9 @@ title: CDLicense
 
 > Generated from `dist/src/web/CDLicense.d.ts` when `npm run docs` is executed at the SDK root.
 
-- `class`
-- `description`: This class contains APIs for activation of the license for the decoder
+Manage license activation and inspect the browser decoder's licensed capabilities.
+
+- `description`: This singleton activates the decoder license, applies the licensed symbology and feature set, and exposes the resulting license state.
 
 ## Constructors
 
@@ -24,7 +25,9 @@ constructor(): void
 activateLicense(license_string: string, qrlic?: boolean): Promise<LicenseResult | undefined>
 ```
 
-- `description`: This API is used to set the EDK license key to the decoder to activate the license
+Activate the browser decoder with an EDK license key.
+
+- `remarks`: Successful activation also updates the licensed symbology set, licensed performance features, and any data-collection policy carried by the license.
 
 ### getLicensedSymbologies
 
@@ -32,7 +35,7 @@ activateLicense(license_string: string, qrlic?: boolean): Promise<LicenseResult 
 getLicensedSymbologies(): Promise<string[]>
 ```
 
-- `description`: Returns a list of licensed symbologies
+Return the standard symbologies enabled by the active license.
 
 ### getLicensedExtendedSymbologies
 
@@ -40,7 +43,7 @@ getLicensedSymbologies(): Promise<string[]>
 getLicensedExtendedSymbologies(): Promise<string[]>
 ```
 
-- `description`: Returns a list of licensed extended symbologies
+Return the extended symbologies enabled by the active license.
 
 ### getLicensedPerformanceFeatures
 
@@ -48,7 +51,7 @@ getLicensedExtendedSymbologies(): Promise<string[]>
 getLicensedPerformanceFeatures(): Promise<CDPerformanceType[]>
 ```
 
-- `description`: Returns a list of licensed performance features
+Return the performance features enabled by the active license.
 
 ### checkLicense
 
@@ -56,4 +59,4 @@ getLicensedPerformanceFeatures(): Promise<CDPerformanceType[]>
 checkLicense(): license_status
 ```
 
-This method is used to check if the license is activated. Handle is 1 only when the license is successfully activated
+Return the current decoder license status.

@@ -4,7 +4,9 @@ title: CDSymbology
 
 > Generated from `dist/src/web/CDSymbology.d.ts` when `npm run docs` is executed at the SDK root.
 
-- `class`
+Access shared symbology output options and per-symbology configuration objects.
+
+- `description`: This singleton exposes the top-level browser symbology configuration surface used to enable or tune individual barcode families.
 
 ## Constructors
 
@@ -23,11 +25,15 @@ constructor(): void
 set sendAIMSymbID(enable: boolean): void
 ```
 
+Enable or disable inclusion of AIM symbology identifiers in decode results.
+
 ### sendAIMSymbID
 
 ```ts
 get sendAIMSymbID(): boolean
 ```
+
+Return whether AIM symbology identifiers are enabled in decode results.
 
 ### QR
 
@@ -35,9 +41,7 @@ get sendAIMSymbID(): boolean
 get QR(): QR
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.QR.propertyName = ...
+Return the QR symbology configuration object.
 
 ### DataMatrix
 
@@ -45,9 +49,7 @@ This will be called as CDSymbology.QR.propertyName = ...
 get DataMatrix(): DataMatrix
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.DataMatrix.propertyName = ...
+Return the Data Matrix symbology configuration object.
 
 ### Aztec
 
@@ -55,9 +57,7 @@ This will be called as CDSymbology.DataMatrix.propertyName = ...
 get Aztec(): Aztec
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Aztec.propertyName = ...
+Return the Aztec symbology configuration object.
 
 ### MaxiCode
 
@@ -65,9 +65,7 @@ This will be called as CDSymbology.Aztec.propertyName = ...
 get MaxiCode(): MaxiCode
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.MaxiCode.propertyName = ...
+Return the MaxiCode symbology configuration object.
 
 ### DotCode
 
@@ -75,9 +73,7 @@ This will be called as CDSymbology.MaxiCode.propertyName = ...
 get DotCode(): DotCode
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.DotCode.propertyName = ...
+Return the DotCode symbology configuration object.
 
 ### GridMatrix
 
@@ -85,9 +81,7 @@ This will be called as CDSymbology.DotCode.propertyName = ...
 get GridMatrix(): GridMatrix
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.GridMatrix.propertyName = ...
+Return the Grid Matrix symbology configuration object.
 
 ### HanXinCode
 
@@ -95,9 +89,7 @@ This will be called as CDSymbology.GridMatrix.propertyName = ...
 get HanXinCode(): HanXinCode
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.HanXinCode.propertyName = ...
+Return the Han Xin Code symbology configuration object.
 
 ### HongKong2of5
 
@@ -105,9 +97,7 @@ This will be called as CDSymbology.HanXinCode.propertyName = ...
 get HongKong2of5(): HongKong2of5
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.HongKong2of5.propertyName = ...
+Return the Hong Kong 2 of 5 symbology configuration object.
 
 ### IATA2of5
 
@@ -115,9 +105,7 @@ This will be called as CDSymbology.HongKong2of5.propertyName = ...
 get IATA2of5(): IATA2of5
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.IATA2of5.propertyName = ...
+Return the IATA 2 of 5 symbology configuration object.
 
 ### Interleaved2of5
 
@@ -125,9 +113,7 @@ This will be called as CDSymbology.IATA2of5.propertyName = ...
 get Interleaved2of5(): Interleaved2of5
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Interleaved2of5.propertyName = ...
+Return the Interleaved 2 of 5 symbology configuration object.
 
 ### Matrix2of5
 
@@ -135,9 +121,7 @@ This will be called as CDSymbology.Interleaved2of5.propertyName = ...
 get Matrix2of5(): Matrix2of5
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Matrix2of5.propertyName = ...
+Return the Matrix 2 of 5 symbology configuration object.
 
 ### Straight2of5
 
@@ -145,9 +129,7 @@ This will be called as CDSymbology.Matrix2of5.propertyName = ...
 get Straight2of5(): Straight2of5
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Straight2of5.propertyName = ...
+Return the Straight 2 of 5 symbology configuration object.
 
 ### NEC2of5
 
@@ -155,9 +137,7 @@ This will be called as CDSymbology.Straight2of5.propertyName = ...
 get NEC2of5(): NEC2of5
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.NEC2of5.propertyName = ...
+Return the NEC 2 of 5 symbology configuration object.
 
 ### Codabar
 
@@ -165,9 +145,7 @@ This will be called as CDSymbology.NEC2of5.propertyName = ...
 get Codabar(): Codabar
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Codabar.propertyName = ...
+Return the Codabar symbology configuration object.
 
 ### Code11
 
@@ -175,9 +153,7 @@ This will be called as CDSymbology.Codabar.propertyName = ...
 get Code11(): Code11
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Code11.propertyName = ...
+Return the Code 11 symbology configuration object.
 
 ### Code32
 
@@ -185,9 +161,7 @@ This will be called as CDSymbology.Code11.propertyName = ...
 get Code32(): Code32
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Code32.propertyName = ...
+Return the Code 32 symbology configuration object.
 
 ### Code39
 
@@ -195,9 +169,7 @@ This will be called as CDSymbology.Code32.propertyName = ...
 get Code39(): Code39
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Code39.propertyName = ...
+Return the Code 39 symbology configuration object.
 
 ### Code49
 
@@ -205,9 +177,7 @@ This will be called as CDSymbology.Code39.propertyName = ...
 get Code49(): Code49
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Code49.propertyName = ...
+Return the Code 49 symbology configuration object.
 
 ### Code93
 
@@ -215,9 +185,7 @@ This will be called as CDSymbology.Code49.propertyName = ...
 get Code93(): Code93
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Code93.propertyName = ...
+Return the Code 93 symbology configuration object.
 
 ### Code128
 
@@ -225,9 +193,7 @@ This will be called as CDSymbology.Code93.propertyName = ...
 get Code128(): Code128
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Code128.propertyName = ...
+Return the Code 128 symbology configuration object.
 
 ### CompositeCode
 
@@ -235,9 +201,7 @@ This will be called as CDSymbology.Code128.propertyName = ...
 get CompositeCode(): CompositeCode
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.CompositeCode.propertyName = ...
+Return the composite-code symbology configuration object.
 
 ### CodablockF
 
@@ -245,9 +209,7 @@ This will be called as CDSymbology.CompositeCode.propertyName = ...
 get CodablockF(): CodablockF
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.CodablockF.propertyName = ...
+Return the Codablock F symbology configuration object.
 
 ### EAN13
 
@@ -255,9 +217,7 @@ This will be called as CDSymbology.CodablockF.propertyName = ...
 get EAN13(): EAN13
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.EAN13.propertyName = ...
+Return the EAN-13 symbology configuration object.
 
 ### UPCA
 
@@ -265,9 +225,7 @@ This will be called as CDSymbology.EAN13.propertyName = ...
 get UPCA(): UPCA
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.UPCA.propertyName = ...
+Return the UPC-A symbology configuration object.
 
 ### EAN8
 
@@ -275,9 +233,7 @@ This will be called as CDSymbology.UPCA.propertyName = ...
 get EAN8(): EAN8
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.EAN8.propertyName = ...
+Return the EAN-8 symbology configuration object.
 
 ### UPCE
 
@@ -285,9 +241,7 @@ This will be called as CDSymbology.EAN8.propertyName = ...
 get UPCE(): UPCE
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.UPCE.propertyName = ...
+Return the UPC-E symbology configuration object.
 
 ### Trioptic
 
@@ -295,9 +249,7 @@ This will be called as CDSymbology.UPCE.propertyName = ...
 get Trioptic(): Trioptic
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Trioptic.propertyName = ...
+Return the Trioptic symbology configuration object.
 
 ### Telepen
 
@@ -305,9 +257,7 @@ This will be called as CDSymbology.Trioptic.propertyName = ...
 get Telepen(): Telepen
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Telepen.propertyName = ...
+Return the Telepen symbology configuration object.
 
 ### Plessey
 
@@ -315,9 +265,7 @@ This will be called as CDSymbology.Telepen.propertyName = ...
 get Plessey(): Plessey
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.Plessey.propertyName = ...
+Return the Plessey symbology configuration object.
 
 ### PDF417
 
@@ -325,9 +273,7 @@ This will be called as CDSymbology.Plessey.propertyName = ...
 get PDF417(): PDF417
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.PDF417.propertyName = ...
+Return the PDF417 symbology configuration object.
 
 ### MSIPlessey
 
@@ -335,9 +281,7 @@ This will be called as CDSymbology.PDF417.propertyName = ...
 get MSIPlessey(): MSIPlessey
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.MSIPlessey.propertyName = ...
+Return the MSI Plessey symbology configuration object.
 
 ### GS1Databar
 
@@ -345,9 +289,7 @@ This will be called as CDSymbology.MSIPlessey.propertyName = ...
 get GS1Databar(): GS1Databar
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.GS1Databar.propertyName = ...
+Return the GS1 DataBar symbology configuration object.
 
 ### AustraliaPost
 
@@ -355,9 +297,7 @@ This will be called as CDSymbology.GS1Databar.propertyName = ...
 get AustraliaPost(): AustraliaPost
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.AustraliaPost.propertyName = ...
+Return the Australia Post symbology configuration object.
 
 ### CanadaPost
 
@@ -365,9 +305,7 @@ This will be called as CDSymbology.AustraliaPost.propertyName = ...
 get CanadaPost(): CanadaPost
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.CanadaPost.propertyName = ...
+Return the Canada Post symbology configuration object.
 
 ### DutchPost
 
@@ -375,9 +313,7 @@ This will be called as CDSymbology.CanadaPost.propertyName = ...
 get DutchPost(): DutchPost
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.DutchPost.propertyName = ...
+Return the Dutch Post symbology configuration object.
 
 ### JapanPost
 
@@ -385,9 +321,7 @@ This will be called as CDSymbology.DutchPost.propertyName = ...
 get JapanPost(): JapanPost
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.JapanPost.propertyName = ...
+Return the Japan Post symbology configuration object.
 
 ### KoreaPost
 
@@ -395,9 +329,7 @@ This will be called as CDSymbology.JapanPost.propertyName = ...
 get KoreaPost(): KoreaPost
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.KoreaPost.propertyName = ...
+Return the Korea Post symbology configuration object.
 
 ### RoyalMail
 
@@ -405,9 +337,7 @@ This will be called as CDSymbology.KoreaPost.propertyName = ...
 get RoyalMail(): RoyalMail
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.RoyalMail.propertyName = ...
+Return the Royal Mail symbology configuration object.
 
 ### UPU
 
@@ -415,9 +345,7 @@ This will be called as CDSymbology.RoyalMail.propertyName = ...
 get UPU(): UPU
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.UPU.propertyName = ...
+Return the UPU symbology configuration object.
 
 ### USPSIntelligent
 
@@ -425,9 +353,7 @@ This will be called as CDSymbology.UPU.propertyName = ...
 get USPSIntelligent(): USPSIntelligent
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.USPSIntelligent.propertyName = ...
+Return the USPS Intelligent Mail symbology configuration object.
 
 ### USPSPlanet
 
@@ -435,9 +361,7 @@ This will be called as CDSymbology.USPSIntelligent.propertyName = ...
 get USPSPlanet(): USPSPlanet
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.USPSPlanet.propertyName = ...
+Return the USPS Planet symbology configuration object.
 
 ### USPSPostnet
 
@@ -445,6 +369,4 @@ This will be called as CDSymbology.USPSPlanet.propertyName = ...
 get USPSPostnet(): USPSPostnet
 ```
 
-This getter returns a  class 
-
-This will be called as CDSymbology.USPSPostnet.propertyName = ...
+Return the USPS POSTNET symbology configuration object.

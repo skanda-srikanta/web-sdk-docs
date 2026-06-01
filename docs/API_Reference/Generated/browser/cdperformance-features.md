@@ -4,8 +4,9 @@ title: CDPerformanceFeatures
 
 > Generated from `dist/src/web/CDPerformanceFeatures.d.ts` when `npm run docs` is executed at the SDK root.
 
-- `class`
-- `description`: This class is used to set the performance settings for the decoder
+Configure optional decoder behaviors that improve readability for specific imaging or data-processing scenarios.
+
+- `description`: This singleton exposes browser decoder settings for low contrast, data parsing, data formatting, DPM, and verification features.
 
 ## Constructors
 
@@ -24,7 +25,7 @@ constructor(): void
 setDataParsing(parsing: CDDataParsing, configString: string): Promise<void>
 ```
 
-- `description`: This API is used to set Data Parsing.
+Configure structured data parsing for decoded content.
 
 ### getDataParsing
 
@@ -32,7 +33,7 @@ setDataParsing(parsing: CDDataParsing, configString: string): Promise<void>
 getDataParsing(): Promise<CDDataParsing>
 ```
 
-- `description`: This API is called to get the Data Parsing type set
+Return the currently configured data-parsing mode.
 
 ### getConfigStringForDataParsing
 
@@ -40,7 +41,7 @@ getDataParsing(): Promise<CDDataParsing>
 getConfigStringForDataParsing(): Promise<string>
 ```
 
-- `description`: This API is called to retrieve the configuration string set for data parsing
+Return the configuration string currently associated with data parsing.
 
 ### setDataFormatting
 
@@ -48,11 +49,15 @@ getConfigStringForDataParsing(): Promise<string>
 setDataFormatting(enable: boolean, formatString: string): Promise<void>
 ```
 
+Configure decoded-data formatting.
+
 ### getDataFormatting
 
 ```ts
 getDataFormatting(): Promise<boolean>
 ```
+
+Return whether output formatting is enabled.
 
 ### getConfigStringForDataFormatting
 
@@ -60,7 +65,7 @@ getDataFormatting(): Promise<boolean>
 getConfigStringForDataFormatting(): Promise<string>
 ```
 
-- `description`: API to retrieve the Data Formatting configuration string
+Return the formatting template currently configured for decoded data.
 
 
 ## Accessors
@@ -71,13 +76,17 @@ getConfigStringForDataFormatting(): Promise<string>
 get stringFromPerformanceType(): CDPerformanceType
 ```
 
+Return the placeholder performance-type value exposed by this singleton.
+
+- `remarks`: This accessor currently returns CDPerformanceType.UNDEFINED and does not reflect active feature state.
+
 ### lowContrast
 
 ```ts
 set lowContrast(lowContrast: boolean): void
 ```
 
-- `description`: Property to enable or disable low contrast decoding
+Enable or disable low-contrast decoding assistance.
 
 ### lowContrast
 
@@ -85,13 +94,15 @@ set lowContrast(lowContrast: boolean): void
 get lowContrast(): boolean
 ```
 
+Return whether low-contrast decoding assistance is enabled.
+
 ### DPMMode
 
 ```ts
 set DPMMode(dpm: CDDPM): void
 ```
 
-- `description`: Method to set the DPM mode
+Configure the decoder for direct-part-marking capture modes.
 
 ### DPMMode
 
@@ -99,16 +110,22 @@ set DPMMode(dpm: CDDPM): void
 get DPMMode(): CDDPM
 ```
 
+Return the currently configured DPM mode.
+
 ### verification
 
 ```ts
 set verification(type: CDVerifier): void
 ```
 
-- `description`: Enables verification for decoding. Adds the verification results in the decode results
+Enable verification grading for supported decoding workflows.
+
+- `remarks`: Verification results are attached to decode results when the active license and decode path support them.
 
 ### verification
 
 ```ts
 get verification(): CDVerifier
 ```
+
+Return the currently configured verification mode.

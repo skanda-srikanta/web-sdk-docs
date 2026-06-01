@@ -4,7 +4,6 @@ title: CDDecoder
 
 > Generated from `dist/src/web/CDDecoder.d.ts` when `npm run docs` is executed at the SDK root.
 
-- `class`
 - `description`: This class consists of APIs to set various decoder settings and to access the decoder
 
 ## Constructors
@@ -24,7 +23,10 @@ constructor(): void
 init(url?: string): Promise<number>
 ```
 
-- `description`: This method initializes the native decoder library and sets the handle
+Initialize the decoder runtime, create the native decoder handle, and prepare default decoding state.
+
+- `remarks`: This must be called before invoking decode or other APIs that depend on the native decoder handle.
+- `throws`: Error when the decoder library cannot be initialized or the native handle cannot be created.
 
 ### decoderVersion
 
@@ -32,7 +34,7 @@ init(url?: string): Promise<number>
 decoderVersion(): Promise<string>
 ```
 
-- `description`: This method returns the current decoder version used in the SDK
+Return the version string reported by the underlying Cortex decoder engine.
 
 ### libraryVersion
 
@@ -40,7 +42,7 @@ decoderVersion(): Promise<string>
 libraryVersion(): Promise<string>
 ```
 
-- `description`: This method returns the version number for the Cortex Decoder package
+Return the JavaScript SDK package version.
 
 ### setBarcodesToDecode
 
@@ -48,7 +50,10 @@ libraryVersion(): Promise<string>
 setBarcodesToDecode(value: number, exactMatch: boolean): Promise<number>
 ```
 
-- `description`: If value &gt; 0 and exactMatch is false : The decoder can decode a maximum of number of codes specified in the value in the image. It can decode lesser too. But if exact match is true, decoder must decode the specified value number of codes in the image.
+Configure how many barcodes the decoder should attempt to return from each image.
+
+- `remarks`: The effective maximum is capped by the currently licensed multi-code capability.
+- `throws`: Error when the decoder has not been initialized or the requested value is invalid.
 
 ### getBarcodesToDecode
 
@@ -56,13 +61,18 @@ setBarcodesToDecode(value: number, exactMatch: boolean): Promise<number>
 getBarcodesToDecode(): { value: number; exactMatch: Boolean; }
 ```
 
+Return the current barcode-count configuration used by decode.
+
 ### setRegionOfInterest
 
 ```ts
 setRegionOfInterest(ROI: CDRect, ensureCorners: boolean): Promise<void>
 ```
 
-- `description`: This API is used to specify the exact location of the code in the image or frame. The decoder looks for the code only in this region. The value given is preview coordinates and not video coordinates
+Restrict decoding to a region of interest within the preview or image coordinates.
+
+- `remarks`: This ROI is shared with the preview overlay pipeline so live camera decoding and single-image decoding use the same region.
+- `throws`: Error when the supplied ROI is not a CDRect instance.
 
 ### getRegionOfInterest
 
@@ -70,7 +80,7 @@ setRegionOfInterest(ROI: CDRect, ensureCorners: boolean): Promise<void>
 getRegionOfInterest(): Promise<CDRect>
 ```
 
-- `description`: Get the specified region of interest
+Return the currently configured region of interest.
 
 ### setDuplicateDelay
 
@@ -78,7 +88,10 @@ getRegionOfInterest(): Promise<CDRect>
 setDuplicateDelay(filter_time: number): void
 ```
 
-- `description`: This API is set to prevent decoding the same barcode more than once
+Configure duplicate-result suppression for single-barcode decoding flows.
+
+- `remarks`: Duplicate filtering is only supported when barcodesToDecode is configured for a single barcode.
+- `throws`: Error when duplicate delay is configured while multi-barcode decoding is active.
 
 ### getDuplicateDelay
 
@@ -86,13 +99,17 @@ setDuplicateDelay(filter_time: number): void
 getDuplicateDelay(): number
 ```
 
+Return the currently configured duplicate-result suppression interval.
+
 ### decode
 
 ```ts
 decode(image: DecodeMethodInput, previewWidth?: number, previewHeight?: number): Promise<CDResult[]>
 ```
 
-- `description`: This method takes the image URL as the input and returns an object of CDResult class with filled inputs. Accepts an image source, which can be an HTMLImageElement, SVGImageElement, HTMLVideoElement, HTMLCanvasElement, Blob, ImageData, ImageBitmap, or OffscreenCanvas object.
+Decode one image source and return the barcode results produced by the native engine.
+
+- `remarks`: The returned array always contains at least one CDResult, including status-only results for license errors, timeouts, and no-decode conditions.
 
 
 ## Accessors
@@ -118,6 +135,7 @@ set picklistMode(value: number): void
 ```
 
 - `description`: This mode can be used to define the percentage of distance from the center where the code can be found.
+
 For example, value 0 would look for codes that is located exactly at the center of the image or preview. And a value 10 will look for the code in the entire image or preview.
 
 ### picklistMode

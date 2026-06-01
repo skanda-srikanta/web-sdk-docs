@@ -4,7 +4,6 @@ title: CDPerformanceFeatures
 
 > Generated from `dist/node/CDPerformanceFeatures.d.ts` when `npm run docs` is executed at the SDK root.
 
-- `class`
 - `description`: This class is used to set the performance settings for the decoder
 
 ## Constructors

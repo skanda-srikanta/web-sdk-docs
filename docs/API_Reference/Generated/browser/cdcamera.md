@@ -4,7 +4,6 @@ title: CDCamera
 
 > Generated from `dist/src/web/CDCamera.d.ts` when `npm run docs` is executed at the SDK root.
 
-- `class`
 - `description`: This class consists of APIs to access the device camera and change the settings of these camera inputs.
 
 ## Constructors
@@ -24,7 +23,10 @@ constructor(): void
 init(videoRef?: HTMLVideoElement, canvasRef?: HTMLCanvasElement): Promise<void>
 ```
 
-- `description`: Initializes the CDCamera class
+Request camera permission, discover available cameras, and bind the preview elements used by the browser camera pipeline.
+
+- `remarks`: Pass both a video element and canvas element when you want overlay drawing features such as highlighted barcodes.
+- `throws`: Error when no usable video element or media device is available.
 
 ### setCamera
 
@@ -32,9 +34,10 @@ init(videoRef?: HTMLVideoElement, canvasRef?: HTMLCanvasElement): Promise<void>
 setCamera(device: MediaDeviceInfo): Promise<void>
 ```
 
-Check if the given parameter is a device ID or device label and choose the device from the array of all devices.
+Select the exact camera device that should be used for subsequent preview and decoding operations.
 
-- `description`: Set the selected video input device with default constraints.
+- `remarks`: If a stream is already active, the current camera is stopped before the new device selection is applied.
+- `throws`: Error when init has not been called or the supplied device is not currently available.
 
 ### setCameraPosition
 
@@ -42,7 +45,10 @@ Check if the given parameter is a device ID or device label and choose the devic
 setCameraPosition(value: CDPosition, autoSwitch: boolean): Promise<void>
 ```
 
-- `description`: Set the camera orientation using CDPosition enum
+Select a camera by orientation instead of by explicit device id.
+
+- `remarks`: Back-camera selection prefers the best matching rear camera and can fall back when a requested orientation is not available.
+- `throws`: Error when the requested orientation cannot be resolved to a usable stream configuration.
 
 ### startCamera
 
@@ -50,7 +56,10 @@ setCameraPosition(value: CDPosition, autoSwitch: boolean): Promise<void>
 startCamera(): Promise<void>
 ```
 
-- `description`: Get access to the camera resource and start the camera.
+Open the configured media stream and attach the selected or default camera to the preview element.
+
+- `remarks`: This method prepares the live MediaStream but does not begin the frame-processing decode loop by itself.
+- `throws`: Error when the browser cannot start the requested stream.
 
 ### stopCamera
 
@@ -58,7 +67,7 @@ startCamera(): Promise<void>
 stopCamera(): Promise<void>
 ```
 
-- `description`: Stop the camera and release the resource
+Stop the active stream, release browser camera resources, and reset preview-processing state.
 
 ### getCameraPosition
 
@@ -66,7 +75,7 @@ stopCamera(): Promise<void>
 getCameraPosition(): { position: CDPosition; autoSwitch: Boolean; } | string
 ```
 
-- `description`: Get the selected camera orientation and the autoSwitch status
+Report the active camera orientation together with the current auto-switch setting.
 
 ### getConnectedCameras
 
@@ -74,7 +83,7 @@ getCameraPosition(): { position: CDPosition; autoSwitch: Boolean; } | string
 getConnectedCameras(): MediaDeviceInfo[]
 ```
 
-- `description`: Get list of all the video input devices connected
+Return the video-input devices discovered during initialization.
 
 ### getCamera
 
@@ -82,7 +91,7 @@ getConnectedCameras(): MediaDeviceInfo[]
 getCamera(): MediaDeviceInfo
 ```
 
-- `description`: Returns the selected video input device
+Return the camera device currently selected in the stream constraints.
 
 ### setVideoCapturing
 
@@ -90,7 +99,7 @@ getCamera(): MediaDeviceInfo
 setVideoCapturing(videoCapture: boolean): Promise<void>
 ```
 
-- `description`: Setting to enable or disable creation of frames.
+Enable or disable extraction of frames from the live preview for decoding.
 
 ### getVideoCapturing
 
@@ -98,7 +107,7 @@ setVideoCapturing(videoCapture: boolean): Promise<void>
 getVideoCapturing(): boolean
 ```
 
-- `description`: Get the status of video capture. No decoding happens if videoCapturing is set to false
+Indicate whether the preview is currently allowed to generate frames for decoding.
 
 ### startPreview
 
@@ -106,8 +115,10 @@ getVideoCapturing(): boolean
 startPreview(getResult: (arg0: CDResult[]) => any): Promise<void>
 ```
 
-- `description`: Takes the callback function as parameter and starts the video preview with selected video input device and returns result for each frame decoded. Can be called after startCamera API or can be called
-directly
+Start the live preview and continuously decode each processed frame.
+
+- `remarks`: If the camera stream is not already active, this method starts it automatically before wiring the preview-processing pipeline.
+- `throws`: Error when the preview element or media-stream setup is not available.
 
 ### stopPreview
 
@@ -115,7 +126,7 @@ directly
 stopPreview(): Promise<void>
 ```
 
-- `description`: Stops the current preview when called but camera is still live
+Pause the live preview while leaving the underlying camera stream available for reuse.
 
 ### setResolution
 
@@ -123,7 +134,9 @@ stopPreview(): Promise<void>
 setResolution(resolution: CDResolution): Promise<void>
 ```
 
-- `description`: API to set the desired resolution. If resolution not available, the closest resolution is set
+Update the preferred preview resolution for future camera starts.
+
+- `remarks`: If the camera is currently active, the stream is restarted so the new constraints can take effect.
 
 ### setHighlightBarcodes
 
@@ -131,7 +144,7 @@ setResolution(resolution: CDResolution): Promise<void>
 setHighlightBarcodes(highlight: Boolean): Promise<void>
 ```
 
-- `description`: Enable barcode highlight on successful decode
+Enable or disable barcode overlay rendering for successful decode results.
 
 ### getHighlightBarcodes
 
@@ -139,7 +152,7 @@ setHighlightBarcodes(highlight: Boolean): Promise<void>
 getHighlightBarcodes(): Promise<Boolean>
 ```
 
-- `description`: Get the barcode highlight setting
+Return whether successful decodes should be highlighted in the preview overlay.
 
 ### getResolution
 
@@ -147,7 +160,9 @@ getHighlightBarcodes(): Promise<Boolean>
 getResolution(): Promise<CDResolution>
 ```
 
-- `description`: Returns the selected resolution. It can be a CDResolution enum value if the preview is ON. Otherwise it returns previously selected resolution.
+Return the effective preview resolution selection.
+
+- `remarks`: When preview is active, the value is derived from the live video track dimensions. Otherwise the previously requested resolution is returned.
 
 ### setFocus
 
@@ -155,7 +170,10 @@ getResolution(): Promise<CDResolution>
 setFocus(value: CDFocus): void
 ```
 
-- `description`: Sets the desired focus value as defined in CDFocus
+Configure the camera focus mode used for preview and decoding.
+
+- `remarks`: Manual focus requests use the device capability range discovered from the active track.
+- `throws`: Error when preview is not active and capabilities are unavailable.
 
 ### getFocus
 
@@ -163,7 +181,7 @@ setFocus(value: CDFocus): void
 getFocus(): CDFocus
 ```
 
-- `description`: Returns the selected focus as CDFocus enum
+Return the currently selected focus mode.
 
 ### isFocusSupported
 
@@ -171,7 +189,9 @@ getFocus(): CDFocus
 isFocusSupported(): boolean
 ```
 
-- `description`: Returns false if manual focus is not supported. Else returns true
+Report whether the active camera exposes focus controls that this SDK can manage.
+
+- `throws`: Error when preview has not been started on browsers that do not gracefully report unsupported focus capability queries.
 
 ### setFixedFocusRange
 
@@ -179,8 +199,10 @@ isFocusSupported(): boolean
 setFixedFocusRange(CDfocusObj: { near: number; far: number; }): void
 ```
 
-- `description`: Change the default focus parameters for CDFocus. Call getFixedFocusRange() API to get CDFocus. Change the near and far values and set the object as parameter to this API.
-- `deprecated`
+Override the default near and far values used when switching between manual focus presets.
+
+- `deprecated`: Use device-reported focus capabilities directly when possible.
+- `throws`: Error when the supplied values are invalid for the active device.
 
 ### getFixedFocusRange
 
@@ -188,8 +210,9 @@ setFixedFocusRange(CDfocusObj: { near: number; far: number; }): void
 getFixedFocusRange(): { min: number; max: number; step: number; }
 ```
 
-- `description`: This API is called to get the CDfocusObj
-- `deprecated`
+Return the stored near and far focus-range presets.
+
+- `deprecated`: This API exposes legacy focus-preset state.
 
 ### setTorchMode
 
@@ -197,7 +220,9 @@ getFixedFocusRange(): { min: number; max: number; step: number; }
 setTorchMode(isTorchNeeded: CDTorch): void
 ```
 
-- `description`: API to set flash
+Enable or disable the camera torch when the active device exposes torch support.
+
+- `throws`: Error when preview is not active and camera capabilities are unavailable.
 
 ### getTorchMode
 
@@ -205,7 +230,9 @@ setTorchMode(isTorchNeeded: CDTorch): void
 getTorchMode(): CDTorch
 ```
 
-- `description`: Returns the current torch setting
+Return the current torch state reported by the active camera track.
+
+- `throws`: Error when preview is not active and camera capabilities are unavailable.
 
 ### isTorchSupported
 
@@ -213,7 +240,9 @@ getTorchMode(): CDTorch
 isTorchSupported(): boolean
 ```
 
-- `description`: Check if torch settings are supported
+Report whether the active camera supports torch control.
+
+- `throws`: Error when preview is not active and capability queries cannot be satisfied.
 
 ### isZoomSupported
 
@@ -221,7 +250,9 @@ isTorchSupported(): boolean
 isZoomSupported(): boolean
 ```
 
-- `description`: Check if Zoom settings are supported
+Report whether the active camera supports native zoom control.
+
+- `throws`: Error when preview is not active and capability queries cannot be satisfied.
 
 ### getSupportedZoomRange
 
@@ -229,7 +260,9 @@ isZoomSupported(): boolean
 getSupportedZoomRange(): { min: number; max: number; step: number; }
 ```
 
-- `description`: Returns the minimum and maximum range for zoom setting.
+Return the supported zoom range for the selected camera.
+
+- `remarks`: When native zoom capability is unavailable, the SDK returns its software crop fallback range.
 
 ### setZoom
 
@@ -237,7 +270,10 @@ getSupportedZoomRange(): { min: number; max: number; step: number; }
 setZoom(value: number): void
 ```
 
-- `description`: Set the desired zoom. Call getSupportedZoomRange() API to get the max and min values
+Set the desired zoom level for preview decoding.
+
+- `remarks`: Native zoom is applied through track constraints when supported; otherwise the SDK falls back to software crop scaling.
+- `throws`: Error when the supplied value is not numeric.
 
 ### getZoom
 
@@ -245,7 +281,7 @@ setZoom(value: number): void
 getZoom(): number
 ```
 
-- `description`: Get the current zoom value
+Return the effective zoom value currently applied by the SDK.
 
 ### setCrop
 
@@ -253,7 +289,10 @@ getZoom(): number
 setCrop(value: number): void
 ```
 
-- `description`: Set the desired crop. Value between 0 and 10 can be passed
+Set the software crop amount used when digital zoom fallback is required.
+
+- `remarks`: Crop is clamped to the supported fallback range.
+- `throws`: Error when the supplied value is not numeric.
 
 ### getCrop
 
@@ -261,7 +300,7 @@ setCrop(value: number): void
 getCrop(): number
 ```
 
-- `description`: Get the current crop value
+Return the current software crop value.
 
 
 ## Properties

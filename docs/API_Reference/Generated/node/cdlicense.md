@@ -4,7 +4,6 @@ title: CDLicense
 
 > Generated from `dist/node/CDLicense.d.ts` when `npm run docs` is executed at the SDK root.
 
-- `class`
 - `description`: This class contains APIs for activation of the license for the decoder
 
 ## Constructors

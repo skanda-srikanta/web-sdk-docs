@@ -4,7 +4,6 @@ title: CDDecoder
 
 > Generated from `dist/node/CDDecoder.d.ts` when `npm run docs` is executed at the SDK root.
 
-- `class`
 - `description`: This class consists of APIs to set various decoder settings and to access the decoder
 
 ## Constructors
@@ -112,6 +111,7 @@ set picklistMode(value: number): void
 ```
 
 - `description`: This mode can be used to define the percentage of distance from the center where the code can be found.
+
 For example, value 0 would look for codes that is located exactly at the center of the image or preview. And a value 10 will look for the code in the entire image or preview.
 
 ### picklistMode
